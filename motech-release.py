@@ -1,4 +1,10 @@
 #!./env/bin/python2.7
+# To run this script you need the following modules installed:
+# jenkinsapi==0.2.16
+# pytz==2013.9
+# requests==2.2.0
+# sh==1.09
+# wsgiref==0.1.2
 
 import getopt
 from jenkinsapi import jenkins
