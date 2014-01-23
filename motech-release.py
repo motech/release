@@ -205,6 +205,34 @@ def main():
 
         sh.cd('..')
 
+    print "\nUpdate MOTECH Version for module repositories"
+    for b in builds:
+        if b['name'] is "Platform-IntegrationTests":
+            continue
+
+        repository = b['repository']
+
+        print "\tUpdateing version for %s" % repository
+        sh.cd(repository)
+
+        # Update motech.version to the release version
+        pom = open("pom.xml")
+        dom = parse(pom)
+        pom.close()
+        mv = dom.getElementsByTagName('motech.version')
+        mv[0].childNodes[0].data = nextMasterVersion
+
+        f = open("pom.xml", 'w')
+        dom.writexml(f)
+        f.close()
+
+        # commit the file
+        sh.git("commit", "-am", "Update motech to latest released version")
+        sh.git("push", "origin", "master")
+
+        sh.cd('..')
+
+    # Leave the directory with the code folders
     sh.cd('..')
 
     # Create new jobs on jenkins for each of the builds
