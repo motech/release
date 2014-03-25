@@ -263,8 +263,14 @@ def main():
     return 0
 
 if False:
+    # For the modules repositories I need to:
+    # - Change motech.version to the release version.  
+    # - Trigger the build. 
+    # - Change motech.version to the developmentVersion
+
     # I think to trigger a release build post to:
-    # http://ci.motechproject.org/view/Releases/job/Platform-0.21.X/release/?
+    # args = "name=releaseVersion&value=%s&name=developmentVersion&value=%s&name=scm.tag&value=%s&json=json:{\"parameter\": [{\"name\": \"releaseVersion\", \"value\": \"%s\"}, {\"name\": \"developmentVersion\", \"value\": \"%s\"}, {\"name\": \"scm.tag\", \"value\": \"%s\"}]}" % ("0.22", "0.22.1-SNAPSHOT", "release-0.22", "0.22", "0.22.1-SNAPSHOT", "release-0.22")
+    # curl --data-urlencode args http://ci.motechproject.org/view/Releases/job/Platform-Communications-0.22.X/release/submit
     # releaseVersion, developmentVersion, scm.tag
 
     # For each of the module before triggering it's release build I'll need to update motech.version in the pom
