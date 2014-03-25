@@ -120,7 +120,6 @@ def main():
                 {
                     'name' : 'Platform-Communications',
                     'url' : "ssh://{0}@review.motechproject.org:29418/platform-communications".format(gerritUsername),
-                    'url' : 'https://github.com/motech/platform-communications.git',
                     'repository' : 'platform-communications',
                     'jobName' : "Platform-Communications-{0}".format(branchName)
                 },
@@ -226,8 +225,15 @@ def main():
         dom.writexml(f)
         f.close()
 
+    print "\nCommit and Push changes"
+    for b in builds:
+
+        repository = b['repository']
+
+        print "\tUpdateing %s" % repository
+        sh.cd(repository)
         # commit the file
-        sh.git("commit", "-am", "Update motech to latest released version")
+        sh.git("commit", "-am", "Update to latest released version")
         sh.git("push", "origin", "master")
 
         sh.cd('..')
