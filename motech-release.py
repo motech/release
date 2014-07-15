@@ -118,22 +118,10 @@ def main():
                     'jobName' : "Platform-{0}".format(branchName)
                 },
                 {
-                    'name' : 'Platform-Communications',
-                    'url' : "ssh://{0}@review.motechproject.org:29418/platform-communications".format(gerritUsername),
-                    'repository' : 'platform-communications',
-                    'jobName' : "Platform-Communications-{0}".format(branchName)
-                },
-                {
-                    'name' : 'Platform-Campaigns',
-                    'url' : "ssh://{0}@review.motechproject.org:29418/platform-campaigns".format(gerritUsername),
-                    'repository' : 'platform-campaigns',
-                    'jobName' : "Platform-Campaigns-{0}".format(branchName)
-                },
-                {
-                    'name' : 'Platform-MRS',
-                    'url' : "ssh://{0}@review.motechproject.org:29418/platform-medical-records".format(gerritUsername),
-                    'repository' : 'platform-medical-records',
-                    'jobName' : "Platform-MRS-{0}".format(branchName)
+                    'name' : 'Modules',
+                    'url' : "ssh://{0}@review.motechproject.org:29418/modules".format(gerritUsername),
+                    'repository' : 'modules',
+                    'jobName' : "Modules-{0}".format(branchName)
                 }
             ]
 
