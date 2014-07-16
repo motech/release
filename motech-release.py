@@ -118,7 +118,7 @@ def main():
                     'jobName' : "Platform-{0}".format(branchName)
                 },
                 {
-                    'name' : 'Modules',
+                    'name' : 'Platform-Modules',
                     'url' : "ssh://{0}@review.motechproject.org:29418/modules".format(gerritUsername),
                     'repository' : 'modules',
                     'jobName' : "Modules-{0}".format(branchName)
@@ -212,6 +212,8 @@ def main():
         f = open("pom.xml", 'w')
         dom.writexml(f)
         f.close()
+
+        sh.cd('..')
 
     print "\nCommit and Push changes"
     for b in builds:
