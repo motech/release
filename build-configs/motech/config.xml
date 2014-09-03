@@ -47,7 +47,7 @@
     <includedRegions></includedRegions>
     <scmName></scmName>
   </scm>
-  <assignedNode>fufu-jnlp</assignedNode>
+  <assignedNode>motech-integration-test</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -121,18 +121,6 @@ maven.test.failure.ignore=false</properties>
       </postSuccessfulBuildSteps>
       <postFailedBuildSteps/>
     </hudson.plugins.release.ReleaseWrapper>
-    <hudson.plugins.locksandlatches.LockWrapper plugin="locks-and-latches@0.6">
-      <locks>
-        <hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
-          <name>fufu</name>
-        </hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
-      </locks>
-    </hudson.plugins.locksandlatches.LockWrapper>
-    <com.michelin.cio.hudson.plugins.maskpasswords.MaskPasswordsBuildWrapper>
-      <varPasswordPairs>
-        <varPasswordPair var="MYSQL_PASS" password="kPv6WQ+ELefF+9Kj/ZUvZ7Ls+OpMKOMYYkgaLwBx6sSduRJk9zkYIkqW2rwoSj5Vs3roZTntvUlpvAM7qLXX7Q=="/>
-      </varPasswordPairs>
-    </com.michelin.cio.hudson.plugins.maskpasswords.MaskPasswordsBuildWrapper>
   </buildWrappers>
   <prebuilders/>
   <postbuilders/>
