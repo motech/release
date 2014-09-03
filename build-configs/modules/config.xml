@@ -58,7 +58,7 @@
     <groupId>org.motechproject</groupId>
     <artifactId>modules</artifactId>
   </rootModule>
-  <goals>clean deploy -PIT -Dmysql.user=jenkins -Dmysql.password=j3nk1ns</goals>
+  <goals>clean deploy -PIT -Dmysql.user=root -Dmysql.password=password</goals>
   <mavenOpts>-Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=512m -Dmaven.test.failure.ignore=false</mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
