@@ -2,14 +2,21 @@
 <maven2-moduleset plugin="maven-plugin@1.493">
   <actions/>
   <description></description>
-  <logRotator>
+  <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>7</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <com.nirima.jenkins.plugins.docker.DockerJobProperty plugin="docker-plugin@0.7">
+      <tagOnCompletion>false</tagOnCompletion>
+      <additionalTag></additionalTag>
+      <pushOnSuccess>false</pushOnSuccess>
+      <cleanImages>true</cleanImages>
+    </com.nirima.jenkins.plugins.docker.DockerJobProperty>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -47,18 +54,18 @@
     <includedRegions></includedRegions>
     <scmName></scmName>
   </scm>
-  <assignedNode>fufu-jnlp</assignedNode>
+  <assignedNode>motech-integration-test</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers class="vector"/>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <rootModule>
     <groupId>org.motechproject</groupId>
     <artifactId>modules</artifactId>
   </rootModule>
-  <goals>clean deploy -PIT -Dmysql.user=root -Dmysql.password=password</goals>
+  <goals>clean</goals>
   <mavenOpts>-Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=512m -Dmaven.test.failure.ignore=false</mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
@@ -108,6 +115,9 @@ git reset --hard $branchName</command>
       </preBuildSteps>
       <postBuildSteps/>
       <postSuccessfulBuildSteps>
+        <hudson.tasks.Shell>
+          <command>python tools/version_update.py ${releaseVersion}</command>
+        </hudson.tasks.Shell>
         <hudson.tasks.Maven>
           <targets>release:clean release:prepare release:perform</targets>
           <mavenName>(Default)</mavenName>
@@ -118,21 +128,12 @@ maven.test.failure.ignore=false</properties>
           <settings class="jenkins.mvn.DefaultSettingsProvider"/>
           <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
         </hudson.tasks.Maven>
+        <hudson.tasks.Shell>
+          <command>python tools/version_update.py ${developmentVersion}</command>
+        </hudson.tasks.Shell>
       </postSuccessfulBuildSteps>
       <postFailedBuildSteps/>
     </hudson.plugins.release.ReleaseWrapper>
-    <hudson.plugins.locksandlatches.LockWrapper plugin="locks-and-latches@0.6">
-      <locks>
-        <hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
-          <name>fufu</name>
-        </hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
-      </locks>
-    </hudson.plugins.locksandlatches.LockWrapper>
-    <com.michelin.cio.hudson.plugins.maskpasswords.MaskPasswordsBuildWrapper>
-      <varPasswordPairs>
-        <varPasswordPair var="MYSQL_PASS" password="kPv6WQ+ELefF+9Kj/ZUvZ7Ls+OpMKOMYYkgaLwBx6sSduRJk9zkYIkqW2rwoSj5Vs3roZTntvUlpvAM7qLXX7Q=="/>
-      </varPasswordPairs>
-    </com.michelin.cio.hudson.plugins.maskpasswords.MaskPasswordsBuildWrapper>
   </buildWrappers>
   <prebuilders/>
   <postbuilders/>
@@ -140,6 +141,6 @@ maven.test.failure.ignore=false</properties>
     <name>FAILURE</name>
     <ordinal>2</ordinal>
     <color>RED</color>
+    <completeBuild>true</completeBuild>
   </runPostStepsIfResult>
 </maven2-moduleset>
-    
