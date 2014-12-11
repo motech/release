@@ -116,7 +116,7 @@ git reset --hard $branchName</command>
       <postBuildSteps/>
       <postSuccessfulBuildSteps>
         <hudson.tasks.Shell>
-          <command>python tools/version_update.py ${releaseVersion}</command>
+          <command>python tools/version_update.py $${releaseVersion}</command>
         </hudson.tasks.Shell>
         <hudson.tasks.Maven>
           <targets>release:clean release:prepare release:perform</targets>
@@ -129,7 +129,7 @@ maven.test.failure.ignore=false</properties>
           <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
         </hudson.tasks.Maven>
         <hudson.tasks.Shell>
-          <command>python tools/version_update.py ${developmentVersion}</command>
+          <command>python tools/version_update.py $${developmentVersion}</command>
         </hudson.tasks.Shell>
       </postSuccessfulBuildSteps>
       <postFailedBuildSteps/>
